@@ -2,26 +2,37 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 var Messages = {};
 
+var messages = {
+	"kom vechten dan" : "ik klap jou niet tegen de vlakte maar er doorheen, beter kijk je uit", 
+	"je bent echt een flappie" : "kijk uit, ik weet waar je bed slaapt",
+	"hond" : "Hoe jij mij genoeme hebben?",
+	"hmm" : "dit is een communistische server, nadenken is niet toegestaan"
+};
+
+var mentionReplies = ["Donder op joe met je graftakkenface", "Beter begin je je kop te houden anders maak ik je kop nog lelijker dan die nu al is", "Laat me met rust, bots hebben ook een leven", "Nee flikker op"];
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
 });
 
 client.on('message', msg => {
-    if (msg.content === 'kom vechten dan') msg.reply('ik klap jou niet tegen de vlakte maar er doorheen, beter kijk je uit');
+    var content = msg.content.toLowerCase();
+    var number = Math.floor(Math.random() * 4);
 
-    if (msg.content == 'je bent echt een flappie') {
-        msg.reply('kijk uit, ik weet waar je bed slaapt');
+    if (messages[content]) {
+	msg.reply(messages[content]);
     }
 
     if (msg.isMentioned(client.user)) {
-        msg.reply(msg.author);
+        msg.reply(mentionReplies[number]);
     }
 
-    Messages[msg.author]++;
-    console.log(Messages[msg.author]);
-    if (Messages[msg.author] == 2) {
-        msg.reply("Hou toch eens een keer je bek");
-    }
+   if (msg.content.startsWith("spam") && msg.content.length > 5) {
+	while (number < 30) {	
+		msg.channel.sendMessage(msg.content.substr(4, 30));
+  		number++
+ 	}
+   }
 });
 
 client.on('guildMemberAdd', member => {
