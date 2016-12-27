@@ -6,7 +6,8 @@ var messages = {
 	"kom vechten dan" : "ik klap jou niet tegen de vlakte maar er doorheen, beter kijk je uit", 
 	"je bent echt een flappie" : "kijk uit, ik weet waar je bed slaapt",
 	"hond" : "Hoe jij mij genoeme hebben?",
-	"hmm" : "dit is een communistische server, nadenken is niet toegestaan"
+	"hmm" : "dit is een communistische server, nadenken is niet toegestaan",
+	"waarom besta ik?" : "omdat het kan jij uit de baarmoeder geslingerde aardappelzetmeeloplossingswattenstaafje"
 };
 
 var mentionReplies = ["Donder op joe met je graftakkenface", "Beter begin je je kop te houden anders maak ik je kop nog lelijker dan die nu al is", "Laat me met rust, bots hebben ook een leven", "Nee flikker op"];
@@ -29,7 +30,7 @@ client.on('message', msg => {
 
    if (msg.content.startsWith("spam") && msg.content.length > 5) {
 	while (number < 30) {	
-		msg.channel.sendMessage(msg.content.substr(4, 30));
+		msg.channel.sendMessage(msg.content.substr(4, 60));
   		number++
  	}
    }
